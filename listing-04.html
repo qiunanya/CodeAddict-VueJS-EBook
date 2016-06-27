@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listing 04</title>
+    <style>
+        table{
+            border-collapse: collapse;
+            min-width: 300px;
+            border: 1px solid lightgray;
+            margin: 0px auto;
+        }
+        th{
+            background-color: lightgray;
+            padding: 10px;
+        }
+        td{
+            padding: 10px;
+        }
+        td:first-child {
+            text-align: center;
+            background-color: lightgray;
+        }
+        td:last-child {
+            text-align: center;   
+            border-bottom: 1px solid lightgray;            
+        }
+    </style>
+</head>
+<body>
+    <div id="div-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th><th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="c in customers">
+                    <td>{{c.id | customerCode}}</td>
+                    <td>{{c.name | prefix}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
+<script src="scripts/vue.js"></script>
+<script>
+
+    
+//    function prefix(value){
+//        return "คุณ "+value;
+//    }
+
+//    Vue.filter("prefix", function(value){
+//        return "คุณ "+value;
+//    });
+//    Vue.filter("prefix", prefix);
+
+    Vue.filter("customerCode", function(id){
+        var digitOfID = 4;
+        var sID = id.toString();
+        var idLength = sID.length;
+        var numCode = "0";        
+        
+        return "C-"+numCode.repeat(digitOfID-idLength)+sID;
+    });
+
+    var vm = new Vue({
+        el : "#div-container",
+        data : {
+            customers : [
+                { id : 1, name : "สมชาย"}, 
+                { id : 2, name : "จตุพงศ์"},
+                { id : 3, name : "อ่วน"},
+                { id : 4, name : "มยุรี"}                
+            ]
+        },
+        filters : {
+            prefix : function(value){
+                return "คุณ "+value;
+            }
+        }        
+    });
+
+</script>

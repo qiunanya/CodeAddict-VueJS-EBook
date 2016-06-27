@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listing 07-1</title>
+    <style>
+        div.div-datagrid{
+            min-width: 50%;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: lightgray;
+        }
+        table.datagrid{
+            width: 100%;
+            border-spacing: 0px;
+            line-height: 150%;
+        }
+        table.datagrid > thead{
+            background-color: #f0ecec;
+        }
+        table.datagrid th:first-child {
+            border-radius: 5px 0 0 5px !important;
+        }
+        table.datagrid th:last-child {
+            border-radius: 0 5px 5px 0 !important;
+        }
+        table.datagrid > thead > tr > th{            
+            padding: 5px;
+        }
+        table.datagrid > tbody > tr:nth-child(even){
+            background-color: #cccccc;
+        }
+        table.datagrid > tbody > tr:nth-child(odd){
+            background-color: #ffffff;
+        }
+        table.datagrid > tfoot > tr{
+            text-align: right;
+            padding-right: 10px;
+        } 
+    </style>
+</head>
+<body>
+    <div id="div-container">
+        <datagrid title="วงร็อคในประเทศไทย" v-bind:datasource="rockbands"></datagrid>   
+    </div>
+</body>
+</html>
+
+<template id="component-datagrid">
+    <h2>{{title}}</h2>
+    <div class="div-datagrid">        
+        <table class="datagrid">
+            <thead>
+                <tr>
+                    <th v-for="n in getFieldNames()">{{n | uppercase}}</th>
+                </tr>
+            </thead>
+            <tbody>
+<!--
+                <tr v-if="columnCount>0" v-for="item in datasource">
+                    <td v-for="n in getFieldNames()">{{getValue(item, n)}}</td>
+                </tr>
+-->
+                <tr v-if="columnCount>0" v-for="item in datasource">
+                    <td v-for="n in columnCount">{{getValue(item, n)}}</td>
+                </tr>
+                <tr v-if="columnCount<1">
+                    <td>None Data</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr><td colspan="{{columnCount}}">
+                    Record Count : {{datasource.length}}
+                </td></tr>
+            </tfoot>
+        </table>
+    </div>
+</template>
+
+<script src="scripts/vue.js"></script> <!--include script vue.js-->
+<script>
+
+var data = [];
+data.push({ id : 1, bandname : "หิน เหล็ก ไฟ", presented : "RS Promotion" });
+data.push({ id : 2, bandname : "ไมโคร", presented: "Grammy Entertainment"});
+data.push({ id : 3, bandname : "บอดี้สแลม", presented: "Genie Record"});
+
+
+var blogs = [];
+blogs.push({ id : 1, title : "ทำไมดู ID4 แล้วรู้สึกไม่สนุก" });
+blogs.push({ id : 2, title : "คิดว่าตัวไหนเก่งสุดครับ" });
+blogs.push({ id : 3, title : "คลิบเด็กลูกเสือ ไทยวัยกระเตาะ!!!" });
+blogs.push({ id : 4, title : "รถในเดอะฟาส8ครับ น่าสนใจมั้ย?" });
+blogs.push({ id : 5, title : "ใครมีหนังที่อยากบอกต่อให้คนอื่นได้ดูบ้างครับ" });
+blogs.push({ id : 6, title : "สมัยก่อนเรื่อง สตาร์ชิพทรูปเปอร์ ดังมั้ยครับ ?" });
+blogs.push({ id : 7, title : "IMAX.INDEPENDENCE DAY 2" });
+
+//console.log(data[1][Object.keys(data[1])[1]]);
+
+    Vue.component("datagrid", {
+        template : "#component-datagrid",
+        props : ["title", "datasource"],
+        computed : {            
+            isDataValid : function(){
+                return (this.datasource instanceof Array);
+            },
+            columnCount : function(){                
+                var result = 0;
+                if((this.isDataValid) && (this.datasource.length>0)){ 
+                //if((this.data instanceof Array) && (this.data.length>0)){ 
+                    result = Object.keys(this.datasource[0]).length;
+                }
+                return result;                
+            }            
+        },
+        methods : {
+            getFieldNames : function(){
+                var result = [];
+                if(this.isDataValid){
+                    result = Object.keys(this.datasource[0]);
+                }
+                return result;
+            },
+//            getValue : function(item, fieldName){
+//                return item[fieldName];
+//            },
+            getValue : function(item, index){
+                return item[Object.keys(item)[index]];
+            }
+        }
+    });
+
+    var vm = new Vue({
+        el : "#div-container",
+        data : {
+            rockbands : data         
+        }
+    });
+</script>

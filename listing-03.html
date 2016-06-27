@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listing 03</title>
+    <style>
+        table{
+            border-collapse: collapse;
+            min-width: 300px;
+            border-radius: 10px;
+        }
+        th{
+            background-color: lightgray;
+            padding: 10px;
+        }
+        td{
+            padding: 10px;
+        }
+        td:first-child {
+            text-align: center;
+            background-color: lightgray;
+        }
+        td:last-child {
+            text-align: right;            
+        }
+    </style>
+</head>
+<body>
+    <div id="div-container">
+<!--        <button v-on:click="swapOrder()">Order</button>-->
+       <input type="text" v-model="filterKeyword" />
+        <table>
+            <thead>
+                <tr>
+                    <th><a href="#" v-on:click="setOrder('name')">name</a></th>
+                    <th><a href="#" v-on:click="setOrder('price')">price</a></th>
+                </tr>
+            </thead>
+            <tbody>
+<!--                <tr v-for="p in products | orderBy orderField orderType">-->
+                <tr v-for="p in products | orderBy orderField orderType | filterBy filterKeyword in 'name'">
+                    <td>{{p.name | uppercase}}</td>
+                    <td>{{p.price | currency ""}}</td>
+                </tr>
+            </tbody>
+        </table>
+<!--
+        <ul>
+            <li v-for="p in products | orderBy 'price' 1">
+                {{p.name | uppercase}} : ราคา {{p.price | currency ""}}
+            </li>
+        </ul>
+-->
+    </div>
+</body>
+</html>
+<script src="scripts/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el : "#div-container",
+        data : {
+            products : [
+                { name : "louis", price : 38000, detail : "หลุยส์ ลุยทุกที่" },
+                { name : "gucci", price : 12500, detail : "กุ๊ดชี่ ดีทุกเม็ด" },
+                { name : "prada", price : 8500.5, detail : "ปราด้า มากันเกลื่อน" },
+                { name : "bao bao", price : 14000, detail : "เบา เบา แถวยาวเพื่อคุณ" },
+                { name : "hermes", price : 25600, detail : "รู้ใจคุณ รู้ใจกรมศุล" },
+                { name : "chanel", price : 950, detail : "กันรั่วกันซึม ใช้ยาแนว ชาแนล" },
+                { name : "coach", price : 99.50, detail : "ทริปกับเรา ทิปกับโค้ช" }  
+            ],
+//            orderProductBy : 1,
+            orderField : "name",
+            orderType : 1,
+            filterKeyword : ""
+        },
+        methods : {
+//            swapOrder : function(){
+//                if(this.orderProductBy==1){
+//                    this.orderProductBy=-1;
+//                }else{
+//                    this.orderProductBy=1;
+//                }        
+//            },
+            setOrder : function(fieldName){
+                if(this.orderField==fieldName){
+                    this.orderType = this.orderType * -1;
+                }else{
+                    this.orderField=fieldName;
+                    this.orderType = 1;
+                }
+                console.log(this.orderField, this.orderType);
+            }
+        }
+    });
+</script>

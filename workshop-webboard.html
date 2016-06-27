@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Workshop : Webboard</title>
+    <style>
+        body{
+            background-color: gray;
+        }
+        
+        a{
+            text-decoration: none;
+        }
+        #div-container{
+            width: 100%;
+            min-height: 95vh;
+            border-radius: 10px;
+            background-color: lightgray;
+            display: inline-block;
+        }
+        #div-header > a{
+            display: inline-block;
+            padding: 10px;
+            margin: 2px;
+            border-radius: 5px;
+            background-color: lightgreen;
+        }
+        #div-header > a:hover{
+            background-color: greenyellow;
+        }
+        #div-header{
+            min-height: 50px;
+            padding: 10px;
+        }
+        #div-room{
+            float: left;
+            width: 150px;
+            min-height: 100px;
+        }
+        #div-content{
+            display: block;
+            overflow: hidden;
+            background-color: whitesmoke;
+            min-height: 100px;
+            border-radius: 10px;
+            border: 10px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+        
+        #div-room > ul{
+            list-style: none;
+            padding: 0px;
+        }
+        
+        #div-room > ul > li{
+            margin: 5px;
+        }
+        
+        #div-room > ul > li > a{
+            display: block;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        #div-room > ul > li > a:hover{
+            background-color: dimgrey;
+        }        
+        a > div:first-child{
+            color: black;
+            display: block;
+        }
+        a > div:last-child{
+            font-size: 0.8em;
+            color: blue;
+        }
+        a.topic-row{
+            padding: 5px;
+            margin: 5px;
+            background-color: lightgray;
+            display: block;
+            border-radius: 5px;
+        }
+        a.topic-row:hover{
+            background-color: gray;
+        }
+        .room-active{
+            background-color: gray;
+            color: whitesmoke;
+        }
+    </style>
+</head>
+<body>
+    <div id="div-container">   
+        <div id="div-header">
+            <a href="#" v-on:click="gotoPage('webboard-home')">Home</a>
+        </div>
+        <div id="div-room">
+            <ul>
+                <li v-for="r in rooms | filterBy ">
+                    <a href="#" v-on:click="gotoRoom(r)" v-bind:class="{ 'room-active' : currentRoom===r }">
+                        <span>{{r.title}}</span>
+                        <div v-html="{{r.description}}"></div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div id="div-content">
+            <companent v-bind:is="currentPage"></companent>
+        </div>
+        
+    </div>
+    <!-- ------------------------------------------- -->
+<!--
+    <template id="template-home">
+        <h1>Home</h1>
+        Dashboard
+    </template>    
+-->
+    <!-- ------------------------------------------- --> 
+<!--
+    <template id="template-topic">
+        <h1>Topic</h1>
+    </template>    
+-->
+    <!-- ------------------------------------------- -->
+<!--
+    <template id="template-room">        
+        <h1>{{$parent.currentRoom.title}}</h1>
+        <div>{{$parent.currentRoom.description}}</div>
+        <div>
+            <a v-for="topic in $parent.topics | filterBy $parent.currentRoom.id in 'id_room'" class="topic-row" href="#" v-on:click="gotoTopic(topic)">
+                <div>{{topic.title}}</div>
+                <div>{{{topic.description | short_description}}}</div>
+            </a>
+        </div>
+    </template>    
+-->
+    <!-- ------------------------------------------- -->
+</body>
+</html>
+<script src="scripts/vue.min.js"></script>
+<script src="scripts/webboard-data.js"></script>
+
+<script type="x/template" id="template-room">
+    <h1>{{$parent.currentRoom.title}}</h1>
+    <div>{{$parent.currentRoom.description}}</div>
+    <div>
+        <a v-for="topic in $parent.topics | filterBy $parent.currentRoom.id in 'id_room'" class="topic-row" href="#" v-on:click="gotoTopic(topic)">
+            <div>{{topic.title}}</div>
+            <div>{{{topic.description | short_description}}}</div>
+        </a>
+    </div>
+</script>
+<!-- ------------------------------------------- --> 
+<script type="x/template" id="template-home">
+    <h1>Home</h1>
+    Dashboard
+</script>    
+<!-- ------------------------------------------- --> 
+<script type="x/template" id="template-topic">
+    <h1>Topic</h1>
+</script> 
+<!-- ------------------------------------------- --> 
+<script>
+
+    var topics = loadAllTopic();
+    //-------------------------------------------
+    Vue.filter("short_description", function(description){
+        var desc_len = description.length;
+        
+        if(desc_len>100){
+            description = description.substr(0, 100)+"...";
+        }
+        return description;
+    });
+    //-------------------------------------------
+    Vue.component("webboard-home", {
+        template : "#template-home"
+    });
+    //-------------------------------------------
+    Vue.component("webboard-topic", {
+        template : "#template-topic"
+    });
+    //-------------------------------------------
+    Vue.component("webboard-room", {
+        template : "#template-room",
+        methods : {
+            gotoTopic : function(topic){
+                
+            }
+        },
+        ready : function(){
+            
+        }
+    });
+    //-------------------------------------------
+    var vm = new Vue({
+        el : "body",
+        data : {
+            currentPage : "webboard-home",
+            currentRoom : null,
+            topics : loadAllTopic(),
+            rooms : []
+        },
+        methods : {
+            gotoHome : function(){
+                this.currentPage = "webboard-home";
+            },
+            gotoRoom : function(room){
+                this.currentRoom = room;
+                this.currentPage = "webboard-room";
+                
+            },
+            gotoTopic : function(topic){
+                this.currentPage = "webboard-topic";
+            },
+            gotoPage : function(pageName){
+                this.currentPage = pageName;
+            }
+        },
+        ready : function(){
+            this.rooms.push({ id : 1, title : "ก้นครัว", description : "ร้านอาหาร สูตรอาหาร อาหารคาว อาหารหวาน เบเกอรี่ ไอศกรีม"});
+            this.rooms.push({ id : 2, title : "การ์ตูน", description : "การ์ตูนญี่ปุ่น การ์ตูนไทย การ์ตูนฝรั่ง อนิเมะ วาดการ์ตูน ของสะสมจากการ์ตูน คอสเพลย์"});
+            this.rooms.push({ id : 3, title : "จตุจักร", description : "สัตว์เลี้ยง สุนัข แมว ต้นไม้ จัดสวน ของสะสม งานฝีมือ เกษตรกรรม"});
+            this.rooms.push({ id : 4, title : "เฉลิมไทย", description : "ภาพยนตร์ ดาราภาพยนตร์ ค่ายหนัง เทศกาลหนัง หนังสั้น"});
+            this.rooms.push({ id : 5, title : "บลูแพลนเน็ต", description : "เที่ยวไทย เที่ยวต่างประเทศ ทะเล ภูเขา เกาะ น้ำตก ดำน้ำ สายการบิน"});
+        }
+    });
+    //-------------------------------------------
+</script>
+
+

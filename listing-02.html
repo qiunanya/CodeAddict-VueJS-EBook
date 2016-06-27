@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listing 02</title>
+</head>
+<body>
+    <div id="div-container">
+        <input type="text" v-model="newFriend" />
+        <button v-on:click="addNewFriend()">Add</button>
+        <div v-for="f in friends">
+            {{f}}
+        </div>
+    </div>
+</body>
+</html>
+<script src="scripts/vue.js"></script>
+<script>
+var vm = new Vue({
+    el : "#div-container",
+    data : {
+        friends : [],
+        newFriend : ""
+    },
+    methods : {
+        addNewFriend : function(){
+            this.friends.push(this.newFriend);
+            this.newFriend = "";
+        }
+    }
+//    ready : function(){
+//        this.friends.push("ประนัย ช่างเฮง");
+//        this.friends.push("ฤทธี จอมเกตุ");
+//        this.friends.push("นเรศ ใสคล้าย");
+//        console.log(this.friends);
+//    }
+});
+</script>

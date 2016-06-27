@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listing 05</title>
+</head>
+<body>
+    <div id="div-container">
+        <my-header></my-header>
+    </div>
+</body>
+</html>
+<script src="scripts/vue.js"></script>
+<script>
+    Vue.component("my-header", {
+        template : "<h1>My Global Header</h1>"
+    });
+
+    var cm = new Vue({
+        el : "#div-container"  ,
+        components : {
+            "my-header" : {
+                template : "<h1>Local Header</h1>"
+            }
+        }        
+    });
+</script>

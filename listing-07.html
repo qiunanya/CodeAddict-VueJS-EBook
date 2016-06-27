@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listing 07</title>
+    
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+
+<div id="div-profile" class="container">
+    <div class="row">    
+        <div class="col-xs-12">
+            <h1>Profile</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2 col-xs-12">
+            <a href="#" v-on:click="gotoPage('profile-general')">ข้อมูลทั่วไป</a><br />
+            <a href="#" v-on:click="gotoPage('profile-history')">ประวัติการตั้งกระทู้</a><br />
+        </div>
+        <div class="col-sm-10 col-xs-12">
+            <component v-bind:is="currentPage"></component>
+        </div>
+    </div>
+</div>    
+
+</body>
+</html>
+
+<template id="component-general">
+    <h2>ข้อมูลทั่วไป</h2>
+    <div class="form-group">
+        <label>First Name</label>
+        <input type="text" class="form-control" v-model="general.firstname">
+    </div>    
+    <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" class="form-control" v-model="general.lastname">
+    </div>    
+    <div class="form-group">
+        <label>Display Name</label>
+        <input type="text" class="form-control" v-model="general.displayname">
+    </div>    
+</template>
+<template id="component-history">
+    <h2>ประวัติการตั้งกระทู้</h2>
+    <div class="container" v-for="topic in history">
+        <div class="row">
+            <div class="col-xs-12">
+                <button type="button" class="btn btn-link">{{topic.title}}</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">{{general.displayname}}</div>
+            <div class="col-xs-6">
+                <button type="button" class="btn btn-link" v-for="tag in topic.tags">
+                {{tag}}
+                </button>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script src="scripts/vue.js"></script>
+<script src="scripts/jquery.js"></script>    
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script>
+
+    var data = {
+        
+        general : {
+            firstname   : "Code",
+            lastname    : "Addict",
+            displayname : "Code Addict Thailand"
+        },
+        history : [
+            {
+                title : "น้ำปลา 1 ขวด กับน้ำ 1 หม้อใส่น้ำปลา 1 ขวด"
+                , tags : ["วิทยาศาสตร์","โภชนาการ"]}
+            , { 
+                title : "สอบถามความแตกต่างของ LittleBigPlanet 3 ทั้ง 2 version"
+                , tags : ["ซอฟต์แวร์", "เกมPlayStation"]}
+            , { 
+                title : "สรุปแล้วนังนี่มันพันธุ์อะไรครับ"
+                , tags : ["สัตว์เลี้ยง", "สุนัข"]}
+        ]        
+    }
+
+    Vue.component("profile-general", {
+        template : "#component-general",
+        data : function(){
+            return data;
+        }
+    });
+    Vue.component("profile-history", {
+        template : "#component-history",
+        data : function(){
+            return data;
+        }
+    });
+
+    var vm = new Vue({
+        el : "#div-profile",
+        data : {
+            currentPage : "profile-general"
+        },
+        methods : {
+            gotoPage : function(componentName){
+                this.currentPage = componentName;
+            }
+        }
+    });
+
+</script>

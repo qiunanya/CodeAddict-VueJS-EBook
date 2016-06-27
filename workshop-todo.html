@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Workshop : Todo List</title>
+    <style>
+        #div-container{
+            min-width: 400px;
+        }
+        #div-todo-menu{
+            float: left;
+            max-width: 200px;
+            min-width: 150px;
+            background-color: lightgray;
+            border-radius: 5px;
+            margin-right: 10px;
+            height: 100%;
+        }
+        #div-todo-current{
+            overflow: hidden;
+            min-width: 200px;
+            background-color: aqua;
+            border-radius: 5px;
+            display: block;
+            padding: 10px;
+            height: 100%;
+            position: relative;
+        }
+        #div-header{
+            background-color: lightblue;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;                
+            position: relative;
+        }
+        #div-header button{
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        #div-todo-current button{
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        ul{
+            list-style-type: none;
+        }
+        .item-done{
+            text-decoration: line-through;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="div-container">
+        <div id="div-header">
+            <h1>Todo List</h1>
+            <button v-on:click="addNewTodoList()">New Todo</button>
+        </div>
+        <div id="div-todo-menu" v-if="todos.length>0">           
+            <ul>
+               <li v-for="todo in todos">
+                   <a href="#" v-on:click="showTodo(todo)">{{todo.title}}</a>
+               </li> 
+            </ul>
+        </div>
+        <div id="div-todo-current" v-if="currentTodo!=null">
+            <h2>{{currentTodo.title}}</h2>
+            <button v-on:click="addNewItem()">New Item</button>
+            <ul>
+                <li v-for="item in currentTodo.items" v-bind:class="{ 'item-done' : item.is_done }">
+                    <input type="checkbox" v-model="item.is_done" />{{item.title}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+<script src="scripts/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el : "#div-container",
+        data : {
+            todos : [],
+            currentTodo : null
+        },
+        methods : {
+            addNewTodoList : function(){
+                var newTitleTodo = prompt("Todo Title : ");
+                this.todos.push({ title : newTitleTodo, items : [] });
+                this.currentTodo = this.todos[this.todos.length-1];
+            },
+            addNewItem : function(){
+                var newItem = prompt("New Item : ");
+                this.currentTodo.items.push({ title : newItem, is_done : false });
+            },
+            showTodo : function(todo){
+                this.currentTodo = todo;
+            }
+        },
+        ready : function(){
+            this.todos = JSON.parse('[{"title":"ทริปไปญี่ปุ่น","items":[]},{"title":"ไปตลาดพรุ่งนี้","items":[{"title":"ซื้อพริกแกง","is_done":false},{"title":"จ่ายแชร์ แม่กิมลั้ง","is_done":false},{"title":"ซื้อผักร้านน้องพริม","is_done":true},{"title":"ซื้อมายองเนส 2 kg","is_done":false}]}]');
+            this.currentTodo = this.todos[this.todos.length-1];
+        }
+    });
+
+</script>
