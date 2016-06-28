@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listing 08 : Component</title>
+</head>
+<body>
+    <div id="div-container">
+<!--    <my-header></my-header>-->
+<!--        <my-header v-bind:title="title"></my-header>-->
+        <my-header v-bind:title.sync="title"></my-header>
+<!--        <my-header v-bind:title.once="title"></my-header>-->
+        <br />
+        Change in VueJS : <input type="text" v-model="title" />
+    </div>
+</body>
+</html>
+
+<template id="component-my-header">
+    <h1>{{getTitle}}</h1>
+    Change in Header : <input type="text" v-model="title" />
+</template>
+
+<script src="scripts/vue.js"></script>
+<script>
+
+    Vue.component("my-header", {
+//        template : "<h1>{{getTitle}}</h1>",
+        template : "#component-my-header",
+        props : [ "title", "datasource" ],
+        computed : {
+            getTitle : function(){
+                return "Hello "+this.title;
+            }
+        }
+    });
+    var vm = new Vue({
+        el : "#div-container",
+        data : {
+            title : "Code Addict"
+        }
+    });
+</script>

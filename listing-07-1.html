@@ -41,7 +41,8 @@
 </head>
 <body>
     <div id="div-container">
-        <datagrid title="วงร็อคในประเทศไทย" v-bind:datasource="rockbands"></datagrid>   
+        <datagrid title="วงร็อคในประเทศไทย" v-bind:datasource="rockbands"></datagrid>
+        <datagrid title="หนังอยากดู" v-bind:datasource="movielist"></datagrid>
     </div>
 </body>
 </html>
@@ -56,13 +57,9 @@
                 </tr>
             </thead>
             <tbody>
-<!--
                 <tr v-if="columnCount>0" v-for="item in datasource">
+<!--                    <td v-for="n in columnCount">{{getValue(item, n)}}</td>-->
                     <td v-for="n in getFieldNames()">{{getValue(item, n)}}</td>
-                </tr>
--->
-                <tr v-if="columnCount>0" v-for="item in datasource">
-                    <td v-for="n in columnCount">{{getValue(item, n)}}</td>
                 </tr>
                 <tr v-if="columnCount<1">
                     <td>None Data</td>
@@ -80,22 +77,20 @@
 <script src="scripts/vue.js"></script> <!--include script vue.js-->
 <script>
 
-var data = [];
-data.push({ id : 1, bandname : "หิน เหล็ก ไฟ", presented : "RS Promotion" });
-data.push({ id : 2, bandname : "ไมโคร", presented: "Grammy Entertainment"});
-data.push({ id : 3, bandname : "บอดี้สแลม", presented: "Genie Record"});
+    var data = [];
+    data.push({ id : 1, bandname : "หิน เหล็ก ไฟ", presented : "RS Promotion" });
+    data.push({ id : 2, bandname : "ไมโคร", presented: "Grammy Entertainment"});
+    data.push({ id : 3, bandname : "บอดี้สแลม", presented: "Genie Record"});
 
 
-var blogs = [];
-blogs.push({ id : 1, title : "ทำไมดู ID4 แล้วรู้สึกไม่สนุก" });
-blogs.push({ id : 2, title : "คิดว่าตัวไหนเก่งสุดครับ" });
-blogs.push({ id : 3, title : "คลิบเด็กลูกเสือ ไทยวัยกระเตาะ!!!" });
-blogs.push({ id : 4, title : "รถในเดอะฟาส8ครับ น่าสนใจมั้ย?" });
-blogs.push({ id : 5, title : "ใครมีหนังที่อยากบอกต่อให้คนอื่นได้ดูบ้างครับ" });
-blogs.push({ id : 6, title : "สมัยก่อนเรื่อง สตาร์ชิพทรูปเปอร์ ดังมั้ยครับ ?" });
-blogs.push({ id : 7, title : "IMAX.INDEPENDENCE DAY 2" });
+    var data_2 = [];
+    data_2.push({ Actor : "Harrison FTom Cruiseord", title : "Indiana Jones 5" });
+    data_2.push({ Actor : "Nicolas Cage", title : "National Treasure 3" });
+    data_2.push({ Actor : "Tom Hanks", title : "Inferno" });
+    data_2.push({ Actor : "ไม่รู้สิ", title : "Tomb Raider: Reboot" });
+    data_2.push({ Actor : "Tom Cruise", title : "Mission Impossible 6" });
+    
 
-//console.log(data[1][Object.keys(data[1])[1]]);
 
     Vue.component("datagrid", {
         template : "#component-datagrid",
@@ -121,11 +116,9 @@ blogs.push({ id : 7, title : "IMAX.INDEPENDENCE DAY 2" });
                 }
                 return result;
             },
-//            getValue : function(item, fieldName){
-//                return item[fieldName];
-//            },
             getValue : function(item, index){
-                return item[Object.keys(item)[index]];
+                //return item[Object.keys(item)[index]];
+                return item[index];
             }
         }
     });
@@ -133,7 +126,8 @@ blogs.push({ id : 7, title : "IMAX.INDEPENDENCE DAY 2" });
     var vm = new Vue({
         el : "#div-container",
         data : {
-            rockbands : data         
+            rockbands : data,
+            movielist : data_2
         }
     });
 </script>
