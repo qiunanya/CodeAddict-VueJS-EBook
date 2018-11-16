@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!--移动端专用标签：<meta name="viewport，每个项目只做一遍：name="viewport":窗口大小
+		width=device-width：页面长度和设备长度相等；initial-scale=1：以%100显示；maximum-scale=1：最大也是1;
+		user-scaleable=no:禁止用户缩放
+		-->
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1，user-scaleable=no" >
+		<title>表单和图片</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<style type="text/css">
+			#form{
+				margin: 50px 50px;
+			}
+			.imge{
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<!--class="form-inline"：内联表单,在form中标签设置，让所有的表单元素居于一行，方便移动端-->
+		<form id="form"  action="##" method="post">
+			<!--class="form-group":form表单群组；设置label标签之间的行距的;has-success:设置获取焦点成功状态-->
+			<div class="form-group ">
+				<label>电子邮件</label>
+			<!--class="form-control":输入框以百分之百显示在浏览器上，输入框会自动换行-->
+			<input type="email" class="form-control" placeholder="请输入您的电子邮件" />
+			</div>
+			
+			<div class="form-group">
+				<label>密码</label>
+			<!--class="form-control":输入框以百分之百显示在浏览器上，而且输入框会自动换行-->
+			<input type="password" class="form-control" name="psd" placeholder="请输入您的密码" />
+			</div>
+			
+			<!--表单组合-->
+			<div class="input-group">
+			    <div class="input-group-addon">￥</div>
+			    <input type="text" class="form-control" id="" placeholder="请输入您的价格" />	
+			</div>
+			
+			
+			<!--复选框设置-->
+			<div class="checkbox">
+				<label >
+				<input type="checkbox" name="" id="" value="" />音乐
+			</label>
+			</div>
+			
+			
+			
+			<div class="checkbox">
+				<label>
+				<input type="checkbox" name="" id="" value="" />体育
+			</label>
+			</div>
+			
+			
+			
+			<!--<input type="submit" class="panel-primary" value="提交"/>-->
+			<button type="button" class="btn btn-primary">提交按钮</button>
+		</form>
+		<!--设置正确的type类型就可以用了：type类型有text;password;datetime;date;month;time;
+		email,url;search;tel;color;week;number	
+		-->
+		<div class="imge">
+			<!--图片展示区域-->
+		<img src="img/6.jpg" alt="图片" class="img-rounded" width="300" height="300"/>
+		<img src="img/6.jpg" alt="图片" class="img-circle" width="300" height="300"/>
+		<!--带边框的缩略图-->
+		<img src="img/6.jpg" alt="图片" class="img-thumbnail img-responsive" width="300" height="300"/>
+		</div>
+		
+		
+		
+		
+	<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

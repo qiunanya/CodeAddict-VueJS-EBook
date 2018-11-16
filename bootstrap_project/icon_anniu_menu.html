@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>图标按钮组件</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+	</head>
+	<body style="margin: 50px;">
+		
+		<i class="glyphicon glyphicon-star"></i>
+		<span class="glyphicon glyphicon-star-empty" ></span>
+		<span class="glyphicon glyphicon-user" ></span>
+		<span class="glyphicon glyphicon-phone" ></span>
+		
+		<!--2下拉菜单组件-->
+		<div class="dropdown">
+			<!--data-toggle="dropdown":点击打开菜单事件-->
+			<button class="btn btn-default" data-toggle="dropdown">
+				下拉菜单
+				<span class="caret"></span>
+			</button>
+			<!--class="dropdown-menu"：隐藏菜单-->
+			<ul class="dropdown-menu">
+				<li class="dropdown-header">网站导航</li>
+				<li><a href="##">首页</a></li>
+				<li><a href="##">产品</a></li>
+				<li><a href="##">咨询</a></li>
+				<!--class="divider":设置分割线-->
+				<li class="divider"><a href="##">关于</a></li>
+				<li><a href="##">联系我们</a></li>
+			</ul>
+			
+		</div>
+		
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

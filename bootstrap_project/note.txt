@@ -1,0 +1,50 @@
+快捷键：dic#one>div.gong+ul.nav>li*4>a
+	<dic id="one">
+		<div class="gong"></div>
+		<ul class="nav">
+			<li><a href=""></a></li>
+			<li><a href=""></a></li>
+			<li><a href=""></a></li>
+			<li><a href=""></a></li>
+		</ul>
+		
+
+div#page>div.logo+ul#navigation>li*2>a
+	
+	</dic>
+	<div id="page">
+		<div class="logo"></div>
+		<ul id="navigation">
+			<li><a href=""></a></li>
+			<li><a href=""></a></li>
+	
+		</ul>
+		<marquee>移动的文字、图片、动画、表格等内容</marquee>
+		具体用法百度一下
+
+2018.1.11第五章栅格系统案例
+<form class="form-horizontal" action="" method="post">
+			
+			<div class="form-group">
+				<label class="col-sm-2 control-label">电子邮件</label>
+				<div class="col-sm-10">
+					<input type="email" class="form-control" placeholder="请输入您的电子邮件" />
+				</div>
+				
+			</div>
+			
+			<div class="form-grop">
+				<label class="col-sm-10 control-label">密码</label>
+				<div class="col-sm-2 control-label">
+					<input type="password" class="form-control" placeholder="请输入您的密码" />
+				</div> 	
+			</div>
+			
+			<div class="form-grop">
+				<label class="col-sm-10 control-label">确认密码</label>
+				<div class="col-sm-2 control-label">
+					<input type="password" class="form-control" placeholder="请输入您的密码" />
+				</div> 	
+			</div>
+			
+		</form>		

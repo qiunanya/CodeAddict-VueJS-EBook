@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1，user-scaleable=no" >
+		<title>关于</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	</head>
+	<body>
+		<!--1.响应式导航布局步骤：
+			1.创建<nav class="navbar navbar-default navbar-fixed-top：把导航条固定在顶部"></nav>：
+			2.创建<div class="container"></div>容器
+			3.创建<div class="navbar-header"></div>导航条
+			4.创建<div class="collapse navbar-collapse" id="navbar-collapse">：装导航标题
+		-->
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<!--container:容器放导航条和菜单-->
+			<div class="container">
+				<!--
+                	作者：邱南亚
+                	时间：2018-02-15
+                	描述：navbar-header:放公司的logo和btton
+                -->
+				<div class="navbar-header">	
+				   <a href="project.html" class="navbar-brand logo"><img src="img/logo.gif" alt="新亚企讯网" width="160" height="51"/></a>
+				   <!--buttton是当页面被缩小时出现，且点击它可以让菜单显示，以供用户选择-->
+				   <!--
+                   	作者：邱南亚
+                   	时间：2018-02-15
+                   	描述：
+                   -->
+				   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+				   	<span class="icon-bar"></span>
+				   	<span class="icon-bar"></span>
+				   	<span class="icon-bar"></span>
+				   </button>
+				
+				</div>
+				<!--
+                	作者：邱南亚
+                	时间：2018-02-15
+                	描述：navbar-collapse;放公司的菜单
+                -->
+				<div class="collapse navbar-collapse" id="navbar-collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<!--span：加载bootstrap图片-->
+					  <li><a href="project.html"><span class="glyphicon glyphicon-home"></span>首页</a></li>
+					  <li><a href="information.html"><span class="glyphicon glyphicon-list"></span>咨询</a></li>
+					  <li><a href="case.html"><span class="glyphicon glyphicon-fire"></span>案例</a></li>
+					  <li class="active"><a href="about.html"><span class="glyphicon glyphicon-question-sign"></span>关于</a></li>
+				    </ul>
+				</div>
+				
+			</div>
+		</nav>
+		<!--2.咨询内容-->
+		<div class="jumbotron">
+			<div class="container">
+				<hgroup>
+					<h1>关于</h1>
+					<h4>本机构的成长介绍......</h4>
+				</hgroup>
+			</div>
+		</div>
+		
+		<div id="about">
+			<div class="container">
+				<!--采用栅格布局row表示行，col-md-8表示列：数值越大，列的面积越大-->
+				<div class="row">
+					<div class="col-md-3 hidden-sm hidden-xs">
+						<div class="list-group">
+							<a class="list-group-item" href="#1">1.机构介绍</a>
+							<a class="list-group-item" href="#2">2.加入我们</a>
+							<a class="list-group-item" href="#3">3.联系方式</a>
+						</div>
+					</div>
+					
+					<div class="col-md-9 about">
+						<!--锚点-->
+						<a name="1"></a>
+						<h3>机构简介</h3>
+						<p>主要从三个方面入手，第一、模型的名字。第二、模型所属的类别以及其解决的问题所具有的特征。第三、模型的具体操作怎么实现。数学中国的优秀论文整理给大</p>
+						<a name="2"></a>
+						<h3>加入我们</h3>
+						<p>主要从三个方面入手，第一、模型的名字。第二、模型所属的类别以及其解决的问题所具有的特征。第三、模型的具体操作怎么实现。数学中国的优秀论文整理给大</p>
+						<a name="3"></a>
+						<h3>联系方式</h3>
+						<p>主要从三个方面入手，第一、模型的名字。第二、模型所属的类别以及其解决的问题所具有的特征。第三、模型的具体操作怎么实现。数学中国的优秀论文整理给大</p>
+						
+						
+					</div>
+				</div>
+					
+			</div>
+			</div>
+		</div>
+		
+		
+		<div id="footer">
+			<div class="container">
+				<p>贵州师范学院|合作事宜</p>
+				<p>黔西南ICP备12345687©教育培训网</p>
+			</div>
+		</div>
+		
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<!--设置尖括号在图片中间显示，即响应式布局-->
+		<script type="text/javascript">
+			
+		</script>
+		
+	</body>
+</html>

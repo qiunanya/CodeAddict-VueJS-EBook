@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1，user-scaleable=no" >
+		<title>模态框插件</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+	</head>
+	<body style="margin: 100px;">
+		<!--1.class="modal fade"模态框申明:fade:使模态框有淡入淡出的效果,tabindex="-1":表示点击空白处关闭窗口，当按钮有data-backdrop="false":该属性无效-->
+		<div class="modal fade" id="myModal" tabindex="-1">
+			<!--class="modal-dialog"：模态框窗口申明，窗口大小偶modal-lg和modal-sm两种格式，根据需求而定-->
+			<div class="modal-dialog modal-lg" >
+				<!--class="modal-content"：模态框内容申明-->
+				<div class="modal-content">
+					<div class="modal-header">
+						
+					     <!--button模态框关闭按钮-->
+						<button class="close" data-dismiss="modal"><span>&times;</span></button>
+						<h4 class="modal-title">会员登录</h4>
+					</div>
+					<!--在模态框的主体部分可以使用栅格系统中的流体-->
+					<div class="modal-body">
+						<!--栅格系统中的流体-->
+						<div class="container-fluid">
+							<div class="col-md-4">1</div>
+							<div class="col-md-4">2</div>
+							<div class="col-md-4">3</div>
+							<div class="col-md-4">4</div>
+						</div>
+						
+					<p>暂时不能注册</p>
+					</div>
+					 <div class="modal-footer">
+					 	<button class="btn btn-default">注册</button>
+					 	<button class="btn btn-primary">登录</button>
+					 	
+					 </div>
+				</div>
+				
+			</div>
+			
+		</div>
+		<!--点击弹出弹窗，需要id才能打开模态框,1.data-toggle="modal"触发的类型;2.data-target="#myModal":触发的节点；就是触发的定位-->
+		<!--还有三个data值：3.data-backdrop:false:没有黑灰色背景，点击空白处不能关闭弹窗，按关闭按钮即可，二值为true是有黑灰色背景；-->
+		<!--4.href="container.html":表示加载一次index.html 到容器内，其格式必须按照模态框的主题部分格式写才可以加载，否则无法加载-->
+		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" 
+			   data-backdrop="false" id="btn">点击弹窗</button>
+		
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			/*使用这个jquery方法时应该去掉button里面的所有data的属性才能凑效，下面这个是在js里面设置打开模态框的方法*/
+			$('#btn').on(click function(){/*打开会自动加载弹窗的*/
+				$('#myModal').modal('show');
+				
+			});
+			
+			
+			$('#myModal').modal({
+				show:false,/*控制自动加载弹窗的*/
+			});
+		</script>
+	</body>
+</html>

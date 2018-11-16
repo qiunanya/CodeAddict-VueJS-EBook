@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1，user-scaleable=no" >
+		<title>bootstrap项目实战</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+	</head>
+	<body>
+		<!--1.响应式导航布局步骤：
+			1.创建<nav class="navbar navbar-default navbar-fixed-top：把导航条固定在顶部"></nav>：
+			2.创建<div class="container"></div>容器
+			3.创建<div class="navbar-header"></div>导航条
+			4.创建<div class="collapse navbar-collapse" id="navbar-collapse">：装导航标题
+		-->
+		
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<!--container:容器放导航条和菜单-->
+			<div class="container">
+				<!--
+                	作者：邱南亚
+                	时间：2018-02-15
+                	描述：navbar-header:放公司的logo和btton
+                -->
+				<div class="navbar-header">	
+				   <a href="project.html" class="navbar-brand logo"><img src="img/logo.gif" alt="新亚企讯网" width="160" height="51"/></a>
+				   <!--buttton是当页面被缩小时出现，且点击它可以让菜单显示，以供用户选择-->
+				   <!--
+                   	作者：邱南亚
+                   	时间：2018-02-15
+                   	描述：
+                   -->
+				   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+				   	<span class="icon-bar"></span>
+				   	<span class="icon-bar"></span>
+				   	<span class="icon-bar"></span>
+				   </button>
+				
+				</div>
+				<!--
+                	作者：邱南亚
+                	时间：2018-02-15
+                	描述：navbar-collapse;放公司的菜单
+                -->
+				<div class="collapse navbar-collapse" id="navbar-collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<!--span：加载bootstrap图片-->
+					  <li class="active"><a href="project.html"><span class="glyphicon glyphicon-home"></span>首页</a></li>
+					  <li><a href="information.html"><span class="glyphicon glyphicon-list"></span>咨询</a></li>
+					  <li><a href="case.html"><span class="glyphicon glyphicon-fire"></span>案例</a></li>
+					  <li><a href="about.html"><span class="glyphicon glyphicon-question-sign"></span>关于</a></li>
+				    </ul>
+				</div>
+				
+			</div>
+		</nav>
+		
+		<!--2.响应式轮播图-->
+		<div id="myCarousel" class="carousel slide">
+			<!--小圆点设置-->
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+			</ol>
+			<!--图片位置设置-->
+			<div class="carousel-inner">
+				<!--style="background: #1B6D85;"style="background: deepskyblue;"style="background: palevioletred;"-->
+				<div class="item active" >
+					<a href="#"><img src="img/fengj2.jpg" alt="公司快讯图1"/></a>
+					<div class="carousel-caption">
+						<h3>公司喜讯</h3>
+					    <p>全体员工全年付出，换来公司突破10亿的成绩</p>
+					</div>
+				</div>
+				
+				<div class="item" >
+					<a href="##"><img src="img/fengj3.jpg" alt="公司快讯图2"/></a>
+					<div class="carousel-caption">
+						<h3>公司业绩</h3>
+					    <p>全体员工全年付出，换来公司突破10亿的成绩</p>
+					</div>
+				</div>
+				
+				<div class="item">
+					<a href="##"><img src="img/fengj4.jpg" alt="公司快讯图3"/></a>
+					<div class="carousel-caption">
+						<h3>公司规模</h3>
+					    <p>全体员工全年付出，换来公司突破10亿的成绩</p>
+					</div>
+				</div>
+			</div>
+			<!--左右点击按钮设置&lsaquo;&rsaquo;2.0:bootstrap特有的轮播尖括号glyphicon-chevron-right;-->
+			<a href="#myCarousel" data-slide="prev" class="carousel-control left">
+			
+				<span class="glyphicon glyphicon-chevron-left">
+			</a>
+			<a href="#myCarousel" data-slide="next" class="carousel-control right">
+				<!--默认的居中尖括号-->
+				<span class="glyphicon glyphicon-chevron-right">
+				
+			</a>
+			
+		</div>
+		
+		<ol class="breadcrumb">
+		  <li><a href="information.html">咨询</a></li>
+		  <li><a href="case.html">案例</a></li>
+		  <li><a href="about.html">关于</a></li>
+		</ol>
+		
+		<!--3.0首页内容介绍上-->
+		<!--建立表格tabl三行两列,注意使用的图片一定要大小相等显示效果最佳-->
+		 <div class="tabl">
+
+		 	<div class="container">
+		 		<h2 class="tab-h2">[为什么选择javaweb企业培训机构?]</h2>
+		 		<p class="tab-p">强大的师资力量，完美的实战型管理课程，让您的企业实现腾飞！</p>
+		 		
+		 		<div class="row">
+		 			<div class="col-md-6 col">
+		 				<div class="media">
+		 					<div class="media-left">
+		 						<!--class="media-object";防止错位-->
+		 						<a href="#"><img src="img/Music1.png" class="media-object" alt="图标"/></a>
+		 					</div>
+		 					
+		 					<div class="media-body">
+		 						<h4 class="media-heading">课程内容</h4>
+		 						<!--class="text-muted"；降低字体颜色-->
+		 						<p class="text-muted">我们：知名企业家，管理学大师联合编写的具有实现性教材</p>
+		 						<p>其他：高校不知名的讲师编写，没有任何实战价值教材</p>
+		 					</div>
+		 				</div>
+		 			
+		 			</div>
+		 			<div class="col-md-6 col">
+		 				<div class="media">
+		 					<div class="media-left">
+		 						<!--class="media-object";防止错位-->
+		 						<a href="#"><img src="img/Music1.png" class="media-object" alt="图标"/></a>
+		 					</div>
+		 					
+		 					<div class="media-body">
+		 						<h4 class="media-heading">师资力量</h4>
+		 						<!--class="text-muted"；降低字体颜色-->
+		 						<p class="text-muted">我们：知名企业家，管理学大师联合编写的具有实现性教材</p>
+		 						<p>其他：高校不知名的讲师编写，没有任何实战价值教材</p>
+		 					</div>
+		 				</div>
+		 			
+		 			</div>
+		 			<div class="col-md-6 col">
+		 				<div class="media">
+		 					<div class="media-left">
+		 						<!--class="media-object";防止错位-->
+		 						<a href="#"><img src="img/Music3.png" class="media-object" alt="图标"/></a>
+		 					</div>
+		 					
+		 					<div class="media-body">
+		 						<h4 class="media-heading">课程安排</h4>
+		 						<!--class="text-muted"；降低字体颜色-->
+		 						<p class="text-muted">我们：知名企业家，管理学大师联合编写的具有实现性教材</p>
+		 						<p>其他：高校不知名的讲师编写，没有任何实战价值教材</p>
+		 					</div>
+		 				</div>
+		 			
+		 			</div>
+		 			<div class="col-md-6 col">
+		 				<div class="media">
+		 					<div class="media-left">
+		 						<!--class="media-object";防止错位-->
+		 						<a href="#"><img src="img/Music4.png" class="media-object" alt="图标"/></a>
+		 					</div>
+		 					
+		 					<div class="media-body">
+		 						<h4 class="media-heading">收费标准</h4>
+		 						<!--class="text-muted"；降低字体颜色-->
+		 						<p class="text-muted">我们：知名企业家，管理学大师联合编写的具有实现性教材</p>
+		 						<p>其他：高校不知名的讲师编写，没有任何实战价值教材</p>
+		 					</div>
+		 				</div>
+		 			
+		 			</div>
+		 		</div>
+		 		
+		 	</div>
+		 </div>
+		 
+		<!--5..0首页内容介绍下-->
+		
+		<div class="tab2">
+			<div class="container">
+				<div class="row">
+					<!--解决文字位置在上面的问题-->
+					
+					<div class="col-md-6 col-sm-6 tab2-img">
+						<!--class="img-responsive"图片响应式布局-->
+						<img src="img/Music1.png" class="img-responsive center-block" alt="图片"/>
+					</div>
+					<div class="text col-md-6 col-sm-6 tab2-text">
+						<h3>强大的学习体系</h3>
+							<p>经过管理学大师层层把关，让您的企业腾飞</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="tab3">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 col-sm-6">
+						<img src="img/Music1.png" class="img-responsive center-block" alt="图片"/>
+					</div>
+					
+					<div class="text col-md-6 col-sm-6">
+						<h3>强大的学习体系</h3>
+							<p>经过管理学大师层层把关，让您的企业腾飞</p>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		
+		<div id="footer">
+			<div class="container">
+				<p>贵州师范学院|合作事宜</p>
+				<p>黔西南ICP备12345687©教育培训网</p>
+			</div>
+		</div>
+		
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<!--设置尖括号在图片中间显示，即响应式布局-->
+		<script type="text/javascript">
+			$(function(){
+				//轮播图自动播放
+				$('#myCarousel').carousel({
+					//自动四秒播放
+					interval:4000,
+				});
+//				//打印图片的高度在浏览器上显示,垂直居中
+//				//打印图片的高：console.log($('.carousel-inner img').height())
+//				$('.carousel-control').css('line-height',$('.carousel-inner img').height()+'px');
+//				//解决尖括号随窗口大小改变而自动刷新时居中问题
+//				$(window).resize(function(){
+//					//获取每张图片的值
+//					var $height=$('.carousel-inner img').eq(0).height()||
+//					            $('.carousel-inner img').eq(1).height()||
+//					            $('.carousel-inner img').eq(2).height();
+//					$('.carousel-control').css('line-height',$height+'px');
+//				});
+			});
+		</script>
+		
+	</body>
+</html>
